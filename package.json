@@ -1,6 +1,33 @@
 {
+  "name": "authenticate-me",
+  "version": "1.0.0",
+  "description": "## Database Schema Design",
+  "main": "index.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "express-validator": "^6.14.2"
-  }
+    "express-validator": "^6.14.2",
+    "lodash": "^4.17.21",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm --prefix backend install backend",
+    "dev:backend": "npm install --prefix backend start",
+    "sequelize": "npm run --prefix backend sequelize",
+    "sequelize-cli": "npm run --prefix backend sequelize-cli",
+    "start": "npm start --prefix backend",
+    "build": "npm run --prefix backend build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tiana3113/API-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tiana3113/API-project/issues"
+  },
+  "homepage": "https://github.com/tiana3113/API-project#readme"
 }
