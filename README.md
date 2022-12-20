@@ -1,8 +1,8 @@
-# `<name of application here>`
+# `Airbnb Clone`
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+`<img width="742" alt="airbnb_dbdiagram" src="https://user-images.githubusercontent.com/113630766/208561488-89eedb28-a1c0-40eb-bfc1-915b32af057a.png">`
 
 ## API Documentation
 
