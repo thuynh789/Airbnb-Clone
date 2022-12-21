@@ -19,6 +19,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
+     options.tableName = 'Spots';
      return queryInterface.bulkInsert(options, [
      {
       ownerId: 1,
@@ -26,7 +27,7 @@ module.exports = {
       city: 'Boston',
       state: 'MA',
       country: 'USA',
-      lat: -1.00,
+      lat: 1.00,
       lng: 8.23,
       name: 'Dorm of Sadness',
       description: 'If you like mice you will love this location.',
@@ -42,7 +43,7 @@ module.exports = {
       lng: 9.33,
       name: 'Pioneer Place',
       description: 'An upscale, urban shopping center.',
-      price: 9999999.00
+      price: 9999.00
      },
      {
       ownerId: 2,
@@ -66,7 +67,7 @@ module.exports = {
       lng: 11.33,
       name: 'Izakaya Mew',
       description: 'Good vibes only.',
-      price: 5000000.00
+      price: 500.00
      }
     ], {})
   },
