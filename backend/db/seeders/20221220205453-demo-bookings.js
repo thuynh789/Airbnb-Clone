@@ -49,7 +49,7 @@ module.exports = {
         userId: 1,
         startDate: '2023-11-17',
         endDate: '2023-11-23'
-      },
+      }
     ], {});
   },
 

@@ -68,7 +68,7 @@ module.exports = {
       description: 'Good vibes only.',
       price: 5000000.00
      }
-     ], {})
+    ], {})
   },
 
   async down (queryInterface, Sequelize) {
