@@ -30,7 +30,7 @@ const validateSpot = [
   check("name")
     .notEmpty()
     .isLength({ min: 1, max: 50 })
-    .withMessage("Name must be less than 50 characters"),
+    .withMessage("Name is required and must be less than 50 characters"),
   check("description")
     .notEmpty()
     .withMessage("Description is required"),
@@ -40,7 +40,7 @@ const validateSpot = [
   handleValidationErrors,
 ];
 
-//---- GET ALL SPOTS -----
+//----GET /api/spots
 router.get("/", async (req, res, next) => {
   const allSpots = await Spot.findAll({
     include: [
@@ -92,7 +92,23 @@ router.get("/", async (req, res, next) => {
 });
 
 
-//----CREATE A SPOT----
+//----POST /api/spots
+router.post("/", requireAuth, validateSpot, async (req, res, next) => {
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
+    const ownerId = req.user.id
+    const newSpot = await Spot.create({
+        ownerId, address, city, state, country, lat, lng, name, description, price
+    })
+    if (newSpot) {
+        res.status(201)
+        return res.json(newSpot)
+    }
+})
+
+//----POST /api/spots/:spotId/images
+router.post("/:spotId/images", requireAuth, validateSpot, async (req, res, next) => {
+    
+})
 
 
 module.exports = router;
