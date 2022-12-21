@@ -106,9 +106,42 @@ router.post("/", requireAuth, validateSpot, async (req, res, next) => {
 })
 
 //----POST /api/spots/:spotId/images
-router.post("/:spotId/images", requireAuth, validateSpot, async (req, res, next) => {
-    
+router.post("/:spotId/images", requireAuth, async (req, res, next) => {
+    const { url, preview } = req.body
+    const userId = req.user.id
+    const spotId = req.params.spotId
+
+    const spot = await Spot.findByPk(spotId)
+
+    // AUTHORIZATION
+    if (!spot) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    if (userId !== spot.ownerId) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden",
+            "statusCode": 403
+        })
+    }
+    const newImage = await SpotImage.build({
+        spotId, url, preview
+    })
+    await newImage.save()
+    return res.json({
+        'spotId': newImage.spotId,
+        'url': newImage.url,
+        'preview': newImage.preview
+    })
 })
 
+//----GET /api/spots/current
+router.get("/current", requireAuth, async (req, res, next) => {
+    
+})
 
 module.exports = router;
