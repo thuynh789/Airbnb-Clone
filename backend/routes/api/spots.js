@@ -194,4 +194,22 @@ router.get("/current", requireAuth, async (req, res, next) => {
       return res.json({spotList});
 });
 
+
+//----GET /api/spots/:spotId
+router.get("/:spotId", async (req, res, next) => {
+    const { spotId } = req.params
+
+    const oneSpot = await Spot.findByPk(spotId)
+
+    if (!oneSpot) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+})
+
+
+
 module.exports = router;
