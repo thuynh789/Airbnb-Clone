@@ -43,6 +43,12 @@ module.exports = {
         userId: 1,
         review: 'I got very drunk and fell asleep so it was good.',
         stars: 5
+      },
+      {
+        spotId: 3,
+        userId: 1,
+        review: 'Smells like beef (in a bad way).',
+        stars: 1
       }
     ], {});
   },
