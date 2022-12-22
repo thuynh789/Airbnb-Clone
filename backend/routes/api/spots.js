@@ -141,7 +141,57 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
 
 //----GET /api/spots/current
 router.get("/current", requireAuth, async (req, res, next) => {
-    
-})
+    const userId = req.user.id
+    const allSpots = await Spot.findAll({
+        where: {
+            ownerId: userId
+        },
+        include: [
+          {
+            model: Review,
+            attributes: ["stars", "spotId"],
+          },
+          {
+            model: SpotImage,
+            attributes: ["url", "preview"],
+          },
+        ],
+      });
+
+      let spotList = [];
+      allSpots.forEach((spot) => {
+        spotList.push(spot.toJSON());
+      });
+
+    //average rating
+      spotList.forEach((spot) => {
+        let total = 0
+        let count = 0
+        spot.Reviews.forEach((review) => {
+            total += review.stars
+            count++
+        })
+        spot.avgRating = total/count
+        if (!spot.avgRating) {
+            spot.avgRating = "No ratings";
+          }
+
+    //preview image
+        spot.SpotImages.forEach((image) => {
+          // console.log(image.preview)
+          if (image.preview === true) {
+            spot.previewImage = image.url;
+          }
+        });
+        if (!spot.previewImage) {
+          spot.previewImage = "No preview image";
+        }
+
+        //remove extra stuff
+        delete spot.Reviews
+        delete spot.SpotImages
+      });
+      return res.json({spotList});
+});
 
 module.exports = router;
