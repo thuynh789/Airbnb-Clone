@@ -6,6 +6,7 @@ const { handleValidationErrors } = require("../../utils/validation");
 const { Spot, Review, SpotImage, User, ReviewImage } = require("../../db/models");
 const router = express.Router();
 
+
 //----GET /api/reviews/current
 router.get("/current", requireAuth, async (req, res, next) => {
     const userId = req.user.id
@@ -51,8 +52,11 @@ router.get("/current", requireAuth, async (req, res, next) => {
         if (!review.previewImage){
             review.previewImage = 'No preview'
         }
+        if (review.ReviewImages.length === 0){
+            review.ReviewImages = 'No review images'
+        }
         delete review.Spot.SpotImages
     })
-    return res.json({reviewList})
+    return res.json({Reviews:reviewList})
 })
 module.exports = router;
