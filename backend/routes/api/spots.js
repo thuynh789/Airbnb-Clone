@@ -335,7 +335,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
               attributes: {
                 exclude: ['reviewId', 'createdAt', 'updatedAt']
               }
-            },
+            }
         ]
     })
 
@@ -346,7 +346,7 @@ router.get("/:spotId/reviews", async (req, res, next) => {
             "statusCode": 404
         })
     }
-
+    return res.json({Reviews: spotReviews})
 })
 
 module.exports = router;
