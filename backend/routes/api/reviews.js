@@ -42,6 +42,17 @@ router.get("/current", requireAuth, async (req, res, next) => {
         reviewList.push(review.toJSON());
       });
 
+      reviewList.forEach((review) => {
+        review.Spot.SpotImages.forEach((image) => {
+            if (image.preview === true){
+                review.previewImage = image.url
+            }
+        })
+        if (!review.previewImage){
+            review.previewImage = 'No preview'
+        }
+        delete review.Spot.SpotImages
+    })
     return res.json({reviewList})
 })
 module.exports = router;
