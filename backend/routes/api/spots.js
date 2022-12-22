@@ -196,19 +196,57 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
 
 //----GET /api/spots/:spotId
-// router.get("/:spotId", async (req, res, next) => {
-//     const spotId = req.params.spotId
+router.get("/:spotId", async (req, res, next) => {
+    const spotId = req.params.spotId
 
-//     const oneSpot = await Spot.findByPk(spotId)
+    const oneSpot = await Spot.findByPk(spotId, {
+        include: [
+            {
+              model: Review,
+              attributes: ["stars"],
+            },
+            {
+              model: SpotImage,
+              attributes: ["id", "url", "preview"],
+            },
+            {
+              model: User,
+              attributes: ["id", "firstName", "lastName"]
+            }
+        ]
+    })
 
-//     if (!oneSpot) {
-//         res.status(404);
-//         return res.json({
-//             "message": "Spot couldn't be found",
-//             "statusCode": 404
-//         })
-//     }
-// })
+    if (!oneSpot) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
+    const info = oneSpot.toJSON()
+    let numReviews = 0
+    let total = 0
+
+    info.Reviews.forEach(review => {
+        if(review.stars){
+            numReviews++
+            total += review.stars
+        }
+    })
+
+    info.numReviews = numReviews
+    if (!info.numReviews) {
+        info.numReviews = 'No reviews'
+    }
+    info.avgStarRating = total/numReviews
+    if (!info.avgStarRating) {
+        info.avgStarRating = 'No ratings'
+      }
+
+    delete info.Reviews
+    return res.json(info)
+})
 
 //----PUT /api/spots/:spotId
 router.put("/:spotId", requireAuth, validateSpot, async (req, res, next) => {
