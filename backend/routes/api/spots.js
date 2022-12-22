@@ -29,7 +29,7 @@ const validateSpot = [
     .withMessage("Longitude is not valid"),
   check("name")
     .notEmpty()
-    .isLength({ min: 1, max: 50 })
+    .isLength({ min:1, max:50 })
     .withMessage("Name is required and must be less than 50 characters"),
   check("description")
     .notEmpty()
@@ -39,6 +39,17 @@ const validateSpot = [
     .withMessage("Price per day is required"),
   handleValidationErrors,
 ];
+
+const validateReview = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isInt({ min:1, max:5})
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+]
 
 //----GET /api/spots
 router.get("/", async (req, res, next) => {
@@ -338,7 +349,6 @@ router.get("/:spotId/reviews", async (req, res, next) => {
             }
         ]
     })
-
     if (!oneSpot) {
         res.status(404);
         return res.json({
@@ -349,4 +359,38 @@ router.get("/:spotId/reviews", async (req, res, next) => {
     return res.json({Reviews: spotReviews})
 })
 
+//----POST /api/spots/:spotId/reviews
+router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res, next) => {
+    const { review, stars } = req.body
+    const userId = req.user.id
+    const spotId = req.params.spotId
+
+    const spot = await Spot.findByPk(spotId)
+
+    if (!spot) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+    const findReview = await Review.findOne({
+        where: {
+            spotId: spotId,
+            userId: userId
+        }
+    })
+    if (findReview) {
+        res.status(403);
+        return res.json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+        })
+    }
+    const newReview = await Review.create({
+        spotId, userId, review, stars
+    })
+    res.status(201)
+    return res.json(newReview)
+})
 module.exports = router;
