@@ -113,7 +113,6 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
 
     const spot = await Spot.findByPk(spotId)
 
-    // AUTHORIZATION
     if (!spot) {
         res.status(404);
         return res.json({
@@ -121,6 +120,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
             "statusCode": 404
         })
     }
+    // AUTHORIZATION
     if (userId !== spot.ownerId) {
         res.status(403);
         return res.json({
@@ -196,20 +196,63 @@ router.get("/current", requireAuth, async (req, res, next) => {
 
 
 //----GET /api/spots/:spotId
-router.get("/:spotId", async (req, res, next) => {
+// router.get("/:spotId", async (req, res, next) => {
+//     const spotId = req.params.spotId
+
+//     const oneSpot = await Spot.findByPk(spotId)
+
+//     if (!oneSpot) {
+//         res.status(404);
+//         return res.json({
+//             "message": "Spot couldn't be found",
+//             "statusCode": 404
+//         })
+//     }
+// })
+
+//----PUT /api/spots/:spotId
+router.put("/:spotId", requireAuth, validateSpot, async (req, res, next) => {
     const { spotId } = req.params
+    const userId = req.user.id
+    const updateSpot = await Spot.findByPk(spotId)
+    const { address, city, state, country, lat, lng, name, description, price } = req.body
 
-    const oneSpot = await Spot.findByPk(spotId)
-
-    if (!oneSpot) {
+    if (!updateSpot) {
         res.status(404);
         return res.json({
             "message": "Spot couldn't be found",
             "statusCode": 404
         })
     }
+
+    //AUTHORIZATION
+    if (userId !== updateSpot.ownerId) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden",
+            "statusCode": 403
+        })
+    }
+
+    updateSpot.address = address
+    updateSpot.city = city
+    updateSpot.state = state
+    updateSpot.country = country
+    updateSpot.lat = lat
+    updateSpot.lng = lng
+    updateSpot.name = name
+    updateSpot.description = description
+    updateSpot.price = price
+
+    await updateSpot.save()
+
+    return res.json(updateSpot)
 })
 
+//----DELETE /api/spots/:spotId
+router.delete("/:spotId", requireAuth, async (req, res, next) => {
+
+})
 
 
 module.exports = router;
