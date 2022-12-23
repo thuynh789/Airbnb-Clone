@@ -393,4 +393,5 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res, ne
     res.status(201)
     return res.json(newReview)
 })
+
 module.exports = router;
