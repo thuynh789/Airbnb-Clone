@@ -106,4 +106,35 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
   })
 })
 
+//----PUT /api/reviews/:reviewId
+router.put("/reviews/:reviewId", requireAuth, validateReview, async (req, res, next) => {
+  const { reviewId } = req.params
+  const userId = req.user.id
+  const updateReview = await Review.findByPk(reviewId)
+  const { review, stars } = req.body
+
+  if (!updateReview) {
+      res.status(404);
+      return res.json({
+          "message": "Review couldn't be found",
+          "statusCode": 404
+      })
+  }
+  //AUTHORIZATION
+  if (userId !== updateReview.userId) {
+      res.status(403);
+      return res.json({
+          "message": "Forbidden",
+          "statusCode": 403
+      })
+  }
+
+  updateReview.review = review
+  updateReview.stars = stars
+
+  await updateReview.save()
+
+  return res.json(updateReview)
+})
+
 module.exports = router;
