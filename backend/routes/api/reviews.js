@@ -1,11 +1,20 @@
 const express = require("express");
 const { setTokenCookie ,requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
-const { handleValidationErrors } = require("../../utils/validation");
-const { validateReview } = require('./spots')
+const { handleValidationErrors } = require("../../utils/validation")
 const { Spot, Review, SpotImage, User, ReviewImage } = require("../../db/models");
 const router = express.Router();
 
+const validateReview = [
+  check('review')
+    .exists({ checkFalsy: true })
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isInt({ min:1, max:5})
+    .withMessage('Stars must be an integer from 1 to 5'),
+  handleValidationErrors
+]
 
 //----GET /api/reviews/current
 router.get("/current", requireAuth, async (req, res, next) => {
@@ -107,7 +116,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res, next) => {
 })
 
 //----PUT /api/reviews/:reviewId
-router.put("/reviews/:reviewId", requireAuth, validateReview, async (req, res, next) => {
+router.put("/:reviewId", requireAuth, validateReview, async (req, res, next) => {
   const { reviewId } = req.params
   const userId = req.user.id
   const updateReview = await Review.findByPk(reviewId)
@@ -137,7 +146,7 @@ router.put("/reviews/:reviewId", requireAuth, validateReview, async (req, res, n
 })
 
 //----DELETE /api/reviews/:reviewId
-router.delete("/reviews/:reviewId", requireAuth, async (req, res, next) => {
+router.delete("/:reviewId", requireAuth, async (req, res, next) => {
   const { reviewId } = req.params
   const userId = req.user.id
 
