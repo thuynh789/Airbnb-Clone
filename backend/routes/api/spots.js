@@ -394,4 +394,45 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res, ne
     return res.json(newReview)
 })
 
+//----GET /api/spots/:spotId/bookings
+router.get("/:spotId/bookings", requireAuth, async (req, res, next) => {
+    const { spotId } = req.params
+    const userId = req.user.id
+
+    const oneSpot = await Spot.findByPk(spotId)
+
+    if (!oneSpot) {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
+    }
+
+    if (userId !== oneSpot.ownerId){
+        const getBooking = await Booking.findAll({
+            where: {
+                spotId: spotId
+            },
+            attributes: ['spotId', 'startDate', 'endDate']
+        })
+       return res.json({Bookings: getBooking})
+    } else {
+        const myBooking = await Booking.findAll({
+            where: {
+                spotId: spotId
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['id', 'firstName', 'lastName']
+                }
+            ]
+        })
+        return res.json({Bookings: myBooking})
+    }
+})
+
+
+
 module.exports = router;
