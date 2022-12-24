@@ -476,6 +476,13 @@ router.post("/:spotId/bookings", requireAuth, validateBooking, async (req, res, 
             "statusCode": 400
         })
     }
+    if (newStartDate < new Date()) {
+        res.status(400);
+        return res.json({
+            "message": "Cannot create a booking in the past",
+            "statusCode": 400
+        })
+    }
     const bookings = await Booking.findAll({
         where: {
             spotId: spotId,
@@ -488,8 +495,8 @@ router.post("/:spotId/bookings", requireAuth, validateBooking, async (req, res, 
             let currentEnd = new Date(bookings[i].endDate)
             let start = currentStart.getTime()
             let end = currentEnd.getTime()
-            let givenStart = startDate.getTime()
-            let givenEnd = endDate.getTime()
+            let givenStart = newStartDate.getTime()
+            let givenEnd = newEndDate.getTime()
 
             if (givenStart >= start && givenEnd <= end){
                 res.status(403)
