@@ -5,16 +5,16 @@ const { handleValidationErrors } = require("../../utils/validation")
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 const router = express.Router();
 
-const validateReview = [
-    check('review')
-      .exists({ checkFalsy: true })
-      .withMessage('Review text is required'),
-    check('stars')
-      .exists({ checkFalsy: true })
-      .isInt({ min:1, max:5})
-      .withMessage('Stars must be an integer from 1 to 5'),
+const validateBooking = [
+    check("startDate")
+        .isDate()
+        .withMessage("startDate is not valid"),
+    check("endDate")
+        .isDate()
+        .withMessage("endDate is not valid"),
     handleValidationErrors
   ]
+
 
 //----GET /api/bookings/current
 router.get("/current", requireAuth, async (req, res, next) => {
@@ -59,7 +59,7 @@ router.get("/current", requireAuth, async (req, res, next) => {
 })
 
 //----PUT /api/bookings/:bookingId
-router.put("/:bookingId", requireAuth, validateReview, async (req, res, next) => {
+router.put("/:bookingId", requireAuth, validateBooking, async (req, res, next) => {
     const { bookingId } = req.params
     const userId = req.user.id
     const { startDate, endDate } = req.body
@@ -147,7 +147,6 @@ router.put("/:bookingId", requireAuth, validateReview, async (req, res, next) =>
             }
         }
     }
-
     updateBooking.startDate = newStartDate
     updateBooking.endDate = newEndDate
 
@@ -156,4 +155,41 @@ router.put("/:bookingId", requireAuth, validateReview, async (req, res, next) =>
     return res.json(updateBooking)
   })
 
+
+  //----DELETE /api/bookings/:bookingId
+router.delete("/:bookingId", requireAuth, async (req, res, next) => {
+    const { bookingId } = req.params
+    const userId = req.user.id
+
+    const deleteBooking = await Booking.findByPk(bookingId)
+
+    if (!deleteBooking) {
+        res.status(404);
+        return res.json({
+            "message": "Booking couldn't be found",
+            "statusCode": 404
+        })
+    }
+    //AUTHORIZATION
+    if (userId !== deleteBooking.userId) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden",
+            "statusCode": 403
+        })
+    }
+
+    if (deleteBooking.startDate < new Date()){
+        res.status(403);
+        return res.json({
+            "message": "Bookings that have been started can't be deleted",
+            "statusCode": 403
+        })
+    }
+    await deleteBooking.destroy()
+    return res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+  })
 module.exports = router;

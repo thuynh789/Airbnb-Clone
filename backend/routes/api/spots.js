@@ -476,13 +476,13 @@ router.post("/:spotId/bookings", requireAuth, validateBooking, async (req, res, 
             "statusCode": 400
         })
     }
-    if (newStartDate < new Date()) {
-        res.status(403);
-        return res.json({
-            "message": "Cannot create a booking in the past",
-            "statusCode": 403
-        })
-    }
+    // if (newStartDate < new Date()) {
+    //     res.status(403);
+    //     return res.json({
+    //         "message": "Cannot create a booking in the past",
+    //         "statusCode": 403
+    //     })
+    // }
     const bookings = await Booking.findAll({
         where: {
             spotId: spotId,
