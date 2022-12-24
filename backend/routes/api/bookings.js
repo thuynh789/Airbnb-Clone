@@ -2,7 +2,7 @@ const express = require("express");
 const { setTokenCookie ,requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation")
-const { Spot, Review, SpotImage, User, ReviewImage } = require("../../db/models");
+const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 const router = express.Router();
 
 //----GET /api/bookings/current
@@ -33,21 +33,18 @@ router.get("/current", requireAuth, async (req, res, next) => {
         bookingList.push(booking.toJSON());
       });
 
-      bookingList.forEach((review) => {
-        review.Spot.SpotImages.forEach((image) => {
+      bookingList.forEach((booking) => {
+        booking.Spot.SpotImages.forEach((image) => {
             if (image.preview === true){
-                review.previewImage = image.url
+                booking.previewImage = image.url
             }
         })
-        if (!review.previewImage){
-            review.previewImage = 'No preview'
+        if (!booking.previewImage){
+            booking.previewImage = 'No preview'
         }
-        if (review.ReviewImages.length === 0){
-            review.ReviewImages = 'No review images'
-        }
-        delete review.Spot.SpotImages
+        delete booking.Spot.SpotImages
     })
-    return res.json({Reviews:reviewList})
+    return res.json({Bookings:bookingList})
 })
 
 module.exports = router;
