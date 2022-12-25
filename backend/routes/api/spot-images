@@ -2,21 +2,24 @@ const express = require("express");
 const { setTokenCookie ,requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation")
-const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
+const { Spot, SpotImage } = require("../../db/models");
 const router = express.Router();
 
 //----DELETE /api/spot-images/:imageId
 router.delete("/:imageId", requireAuth, async (req, res, next) => {
-    const { spotImageId } = req.params
+    const imageId = req.params.imageId
     const userId = req.user.id
 
-    const deleteSpotImage = await SpotImage.findByPk(spotImageId, {
+    console.log(imageId)
+
+    const deleteSpotImage = await SpotImage.findByPk(imageId, {
         include: [
             {
                 model: Spot
             }
         ]
     })
+
     if (!deleteSpotImage) {
         res.status(404);
         return res.json({
