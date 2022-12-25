@@ -2,7 +2,44 @@ const express = require("express");
 const { setTokenCookie ,requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation")
-const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
+const { Review, User, ReviewImage } = require("../../db/models");
 const router = express.Router();
+
+//----DELETE /api/review-images/:imageId
+router.delete("/:imageId", requireAuth, async (req, res, next) => {
+    const imageId = req.params.imageId
+    const userId = req.user.id
+
+    console.log(imageId)
+
+    const deleteReviewImage = await ReviewImage.findByPk(imageId, {
+        include: [
+            {
+                model: Review
+            }
+        ]
+    })
+
+    if (!deleteReviewImage) {
+        res.status(404);
+        return res.json({
+            "message": "Review Image couldn't be found",
+            "statusCode": 404
+        })
+    }
+    //AUTHORIZATION
+    if (userId !== deleteReviewImage.Review.userId) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden",
+            "statusCode": 403
+        })
+    }
+    await deleteReviewImage.destroy()
+    return res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+  })
 
 module.exports = router;

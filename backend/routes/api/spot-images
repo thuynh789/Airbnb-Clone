@@ -2,7 +2,7 @@ const express = require("express");
 const { setTokenCookie ,requireAuth } = require("../../utils/auth");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation")
-const { Spot, SpotImage } = require("../../db/models");
+const { Spot, User, SpotImage } = require("../../db/models");
 const router = express.Router();
 
 //----DELETE /api/spot-images/:imageId
