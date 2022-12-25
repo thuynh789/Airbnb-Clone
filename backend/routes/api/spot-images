@@ -5,4 +5,39 @@ const { handleValidationErrors } = require("../../utils/validation")
 const { Spot, Review, SpotImage, User, ReviewImage, Booking } = require("../../db/models");
 const router = express.Router();
 
+//----DELETE /api/spot-images/:imageId
+router.delete("/:imageId", requireAuth, async (req, res, next) => {
+    const { spotImageId } = req.params
+    const userId = req.user.id
+
+    const deleteSpotImage = await SpotImage.findByPk(spotImageId, {
+        include: [
+            {
+                model: Spot
+            }
+        ]
+    })
+    if (!deleteSpotImage) {
+        res.status(404);
+        return res.json({
+            "message": "Spot Image couldn't be found",
+            "statusCode": 404
+        })
+    }
+    //AUTHORIZATION
+    if (userId !== deleteSpotImage.Spot.ownerId) {
+        res.status(403);
+        return res.json({
+            "message": "Forbidden",
+            "statusCode": 403
+        })
+    }
+    await deleteSpotImage.destroy()
+    return res.json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+  })
+
+
 module.exports = router;
