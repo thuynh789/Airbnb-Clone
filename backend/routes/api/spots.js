@@ -112,10 +112,44 @@ router.get("/", validateParameters, async (req, res, next) => {
   if (size > 20) size = 20
 
   if (page >= 1 && size >= 1) {
-    pagination.limit = size;
-    pagination.offset = size * (page - 1);
-}
+    pagination.limit = size
+    pagination.offset = size * (page - 1)
+  }
+
+  let where = {}
+
+  if (minLat && maxLat) {
+    where.lat = {[Op.between]: [parseFloat(minLat), parseFloat(maxLat)]}
+  }
+  if (minLat && !maxLat) {
+    where.lat = {[Op.gte]: parseFloat(minLat)}
+  }
+  if (maxLat && !minLat) {
+    where.lat = {[Op.lte]: parseFloat(maxLat)}
+  }
+
+  if (minLng && maxLng) {
+    where.lng = {[Op.between]: [parseFloat(minLng), parseFloat(maxLng)]}
+  }
+  if (minLng && !maxLng) {
+    where.lng = {[Op.gte]: parseFloat(minLng)}
+  }
+  if (maxLng && !minLng) {
+    where.lng = {[Op.lte]: parseFloat(maxLng)}
+  }
+
+  if (minPrice && maxPrice) {
+    where.price = {[Op.between]: [parseFloat(minPrice), parseFloat(maxPrice)]}
+  }
+  if (minPrice && !maxPrice) {
+    where.price = {[Op.gte]: parseFloat(minPrice)}
+  }
+  if (maxPrice && !minPrice) {
+    where.price = {[Op.lte]: parseFloat(maxPrice)}
+  }
+
   const allSpots = await Spot.findAll({
+    where,
     include: [
       {
         model: Review,
@@ -126,6 +160,7 @@ router.get("/", validateParameters, async (req, res, next) => {
         attributes: ["url", "preview"],
       },
     ],
+    ...pagination
   });
 
   let spotList = [];
