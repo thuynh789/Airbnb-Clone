@@ -102,7 +102,6 @@ handleValidationErrors
 router.get("/", validateParameters, async (req, res, next) => {
 
   let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query
-  const pagination = {}
 
   page = +page
   size = +size
@@ -111,6 +110,7 @@ router.get("/", validateParameters, async (req, res, next) => {
   if (page > 10) page = 10
   if (size > 20) size = 20
 
+  const pagination = {}
   if (page >= 1 && size >= 1) {
     pagination.limit = size
     pagination.offset = size * (page - 1)
@@ -196,7 +196,7 @@ router.get("/", validateParameters, async (req, res, next) => {
     delete spot.Reviews
     delete spot.SpotImages
   });
-  return res.json({spotList});
+  return res.json({spotList, page, size});
 });
 
 
