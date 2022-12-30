@@ -241,7 +241,7 @@ router.post("/:spotId/images", requireAuth, async (req, res, next) => {
     })
     await newImage.save()
     return res.json({
-        'spotId': newImage.spotId,
+        'id': newImage.id,
         'url': newImage.url,
         'preview': newImage.preview
     })

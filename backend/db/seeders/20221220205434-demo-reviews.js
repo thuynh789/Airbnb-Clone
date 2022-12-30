@@ -27,6 +27,12 @@ module.exports = {
         stars: 5
       },
       {
+        spotId: 1,
+        userId: 3,
+        review: 'We did not like all the mice.',
+        stars: 2
+      },
+      {
         spotId: 2,
         userId: 3,
         review: 'Very spacious. I slept in Dior.',
@@ -48,7 +54,7 @@ module.exports = {
         spotId: 3,
         userId: 1,
         review: 'Smells like beef (in a bad way).',
-        stars: 1
+        stars: 2
       }
     ], {});
   },
