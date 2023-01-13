@@ -22,5 +22,9 @@
   "bugs": {
     "url": "https://github.com/tiana3113/API-project/issues"
   },
-  "homepage": "https://github.com/tiana3113/API-project#readme"
+  "homepage": "https://github.com/tiana3113/API-project#readme",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }
