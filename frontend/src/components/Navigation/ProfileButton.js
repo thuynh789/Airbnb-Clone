@@ -4,6 +4,7 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import DemoUser from "../DemoUser";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -66,6 +67,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
+            <DemoUser/>
           </>
         )}
       </ul>
@@ -74,4 +76,3 @@ function ProfileButton({ user }) {
 }
 
 export default ProfileButton;
-
