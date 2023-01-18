@@ -7,26 +7,41 @@ import "./AllSpots.css"
 function AllSpots() {
   const dispatch = useDispatch()
   const history = useHistory()
+
+  useEffect(() => {
+      dispatch(getAllSpotsThunk())
+    }, [dispatch])
+
   const allSpots = useSelector(state => state.spots)
   const allSpotsArr = Object.values(allSpots)
-
   if (!allSpotsArr) return null
 
 
-  useEffect(() => {
-    dispatch(getAllSpotsThunk())
-    }, [dispatch])
-
-
   return (
-    <>
-    <div className='button'>
-      <div className='clickable-div' onClick={handleSubmit}>
-        Demo User Login
-      </div>
+    <div className="spots-wrapper">
+        <div className="all-spots">
+            {allSpotsArr.map(spot => (
+                <div key={spot.id} className="spots-card">
+                    <div className="spots-card-wrapper">
+                        <img
+                            className="spots-image"
+                            src={spot.previewImage}
+                            alt={spot.name}
+                            onClick={() => history.push(`/spots/${spot.id}`)}
+                        />
+                    </div>
+                    <div className="spots-details-wrapper">
+                        <div className="spots-details">
+                            <p className="location">{spot.city}, {spot.state}</p>
+                            <p className="rating">{spot.avgRating}</p>
+                            <p className="price">${spot.price} night</p>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
     </div>
-    </>
-  );
+  )
 }
 
 export default AllSpots;

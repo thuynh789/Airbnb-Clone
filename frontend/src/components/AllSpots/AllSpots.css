@@ -1,0 +1,27 @@
+.spots-wrapper {
+    margin: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.all-spots {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.spots-card {
+
+}
+
+.spots-card-wrapper {
+    width: 100px;
+    height: 100px;
+}
+
+.spots-image {
+    width: 100px;
+    height: 100px
+}

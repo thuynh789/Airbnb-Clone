@@ -196,7 +196,7 @@ router.get("/", validateParameters, async (req, res, next) => {
     delete spot.Reviews
     delete spot.SpotImages
   });
-  return res.json({spotList, page, size});
+  return res.json({ Spots: spotList, page, size});
 });
 
 
