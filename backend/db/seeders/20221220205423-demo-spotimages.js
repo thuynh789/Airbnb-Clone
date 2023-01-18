@@ -22,17 +22,17 @@ module.exports = {
      return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: 'https://i.pinimg.com/originals/ba/53/89/ba5389484514c0aa232062040b7dd40e.jpg',
+        url: 'https://www.bu.edu/housing/files/2019/11/19-1780-HOUSING-019-1200x500.jpg',
         preview: true
       },
       {
         spotId: 2,
-        url: 'https://www.shareoregon.com/things-to-do/system/images/237424/big/pionerplace3.jpg?1501559771',
+        url: 'https://res.cloudinary.com/dragonspell/images/w_540,h_675,c_fill,dpr_auto,fl_progressive:steep,f_auto/w_540,h_675/v1571421425/www.travelportland.com/6190488811_d5207f99ec_o/6190488811_d5207f99ec_o.jpg',
         preview: true
       },
       {
         spotId: 3,
-        url: 'https://cdn.vox-cdn.com/thumbor/Mte_wxG4cKQw9PBh5cuMWgiw8Vw=/0x0:920x613/1200x800/filters:focal(581x104:727x250)/cdn.vox-cdn.com/uploads/chorus_image/image/63257148/Little_Big_Burger_.0.jpg',
+        url: 'https://media-cdn.tripadvisor.com/media/photo-s/1a/ea/d2/a2/little-big-burger.jpg',
         preview: true
       },
       {
