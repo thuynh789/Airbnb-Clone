@@ -6,6 +6,8 @@ import "./OneSpot.css"
 
 function OneSpot() {
   const { spotId } = useParams()
+  const thisSpot = useSelector((state) => state.spots.singleSpot);
+  console.log(thisSpot)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -13,9 +15,6 @@ function OneSpot() {
       dispatch(getOneSpotThunk(spotId))
     }, [dispatch])
 
-  const allSpots = useSelector(state => state.spots.allSpots)
-  const allSpotsArr = Object.values(allSpots)
-  if (!allSpotsArr) return null
 
 
   return (
