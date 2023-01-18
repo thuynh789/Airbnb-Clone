@@ -1,8 +1,5 @@
 .spots-wrapper {
     margin: 80px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
 }
 
 .all-spots {
@@ -30,3 +27,4 @@
     border-radius: 15px
 
 }
+

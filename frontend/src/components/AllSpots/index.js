@@ -12,8 +12,8 @@ function AllSpots() {
       dispatch(getAllSpotsThunk())
     }, [dispatch])
 
-  const allSpots = useSelector(state => state.spots)
-  const allSpotsArr = Object.values(allSpots).filter(spot => Object.keys(spot).length !== 0)
+  const allSpots = useSelector(state => state.spots.allSpots)
+  const allSpotsArr = Object.values(allSpots)
   if (!allSpotsArr) return null
 
 
@@ -21,13 +21,12 @@ function AllSpots() {
     <div className="spots-wrapper">
         <div className="all-spots">
             {allSpotsArr.map(spot => (
-                <div key={spot.id} className="spots-card">
+                <div key={spot.id} className="spots-card" onClick={() => history.push(`/spots/${spot.id}`)}>
                     <div className="spots-card-wrapper">
                         <img
                             className="spots-image"
                             src={spot.previewImage}
                             alt={spot.name}
-                            onClick={() => history.push(`/spots/${spot.id}`)}
                         />
                     </div>
                     <div className="spots-details-wrapper">
