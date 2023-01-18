@@ -13,7 +13,7 @@ function AllSpots() {
     }, [dispatch])
 
   const allSpots = useSelector(state => state.spots)
-  const allSpotsArr = Object.values(allSpots)
+  const allSpotsArr = Object.values(allSpots).filter(spot => Object.keys(spot).length !== 0)
   if (!allSpotsArr) return null
 
 

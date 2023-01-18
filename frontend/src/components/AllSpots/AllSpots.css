@@ -13,15 +13,20 @@
 }
 
 .spots-card {
-
+    margin: 20px;
 }
 
 .spots-card-wrapper {
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
+
 }
 
 .spots-image {
-    width: 100px;
-    height: 100px
+    display: flex;
+    flex-wrap: wrap;
+    width: 250px;
+    height: 250px;
+    border-radius: 15px
+
 }
