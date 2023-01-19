@@ -20,12 +20,12 @@ function App() {
       {isLoaded && (
         <Switch>
 
-          <Route exact path='/'>
-            <AllSpots />
+          <Route path='/spots/:spotId'>
+            <OneSpot />
           </Route>
 
-          <Route path='spots/:spotId'>
-            <OneSpot />
+          <Route exact path='/'>
+            <AllSpots />
           </Route>
 
         </Switch>

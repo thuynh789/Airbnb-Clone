@@ -76,7 +76,7 @@ export default function spotReducer(state = initialState, action){
             newState.singleSpot = action.spot
             return newState
         }
-        
+
         default:
             return state
     }
