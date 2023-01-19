@@ -39,9 +39,8 @@ function AddSpotModal() {
       price
     }
 
-    return dispatch(addSpotThunk(newSpot, url))
+    dispatch(addSpotThunk(newSpot, url))
     .then((res) => history.push(`/spots/${res.id}`))
-
     .then(closeModal)
     .catch(
       async (res) => {

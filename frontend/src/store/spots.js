@@ -89,7 +89,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
 }
 
 
-//WORK IN PROGRESS EDIT THUNK
+// WORK IN PROGRESS
 // export const editSpotThunk = (editedSpot, spotId) => async (dispatch) => {
 //     const res = await csrfFetch(`/api/spots/${spotId}`, {
 //         method: 'PUT',
@@ -137,6 +137,13 @@ export default function spotReducer(state = initialState, action){
         case DELETE_SPOT: {
             const newState = { ...state, singleSpot: {} }
             delete newState.allSpots[action.spotId]
+            return newState
+        }
+
+        case EDIT_SPOT: {
+            const newState = { ...state, singleSpot: {} }
+            newState.allSpots[action.spot.id] = action.spot
+            newState.singleSpot = action.spot
             return newState
         }
 

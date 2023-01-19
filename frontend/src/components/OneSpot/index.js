@@ -22,7 +22,8 @@ function OneSpot() {
 //   console.log(spotReviews)
 
   useEffect(() => {
-    dispatch(getOneSpotThunk(spotId)).catch(() => history.push("/"));
+    dispatch(getOneSpotThunk(spotId))
+    .catch(() => history.push('/'));
   }, [dispatch, spotId, history]);
 
   if (!spot) return null;

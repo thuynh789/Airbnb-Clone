@@ -16,8 +16,8 @@ const DeleteSpotModal = () => {
        e.preventDefault();
        setErrors([]);
 
-    await dispatch(deleteSpotThunk(spot.id))
-      .then(history.push('/'))
+     dispatch(deleteSpotThunk(spot.id))
+      .then(() => history.push('/'))
       .then(closeModal)
       .catch(async (res) => {
         const data = await res.json();
