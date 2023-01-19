@@ -31,6 +31,7 @@ export const editSpotAC = (spot) => ({
 export const deleteSpotAC = (spotId) => ({
     type: DELETE_SPOT,
     spotId
+
 })
 
 //THUNKS
@@ -73,8 +74,34 @@ export const addSpotThunk = (newSpot, url) => async (dispatch) => {
             return spotInfo
         }
     }
-    return res
+  return res
 }
+
+export const deleteSpotThunk = (spotId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const deletedSpot = await res.json()
+        dispatch(deleteSpotAC(spotId))
+        return deletedSpot
+    }
+}
+
+
+//WORK IN PROGRESS EDIT THUNK
+// export const editSpotThunk = (editedSpot, spotId) => async (dispatch) => {
+//     const res = await csrfFetch(`/api/spots/${spotId}`, {
+//         method: 'PUT',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(editedSpot)
+//     })
+//     if (res.ok) {
+//         const updatedSpot = await res.json()
+//         dispatch(editSpotAC(spot))
+//         return updatedSpot
+//     }
+// }
 
 //REDUCERS
 
@@ -103,9 +130,15 @@ export default function spotReducer(state = initialState, action){
 
         case ADD_SPOT: {
             const newState = { ...state, singleSpot:{} }
-            newState.allSpots[action.spot.id] = action.spot;
-            return newState;
-        };
+            newState.allSpots[action.spot.id] = action.spot
+            return newState
+        }
+
+        case DELETE_SPOT: {
+            const newState = { ...state, singleSpot: {} }
+            delete newState.allSpots[action.spotId]
+            return newState
+        }
 
         default:
             return state
