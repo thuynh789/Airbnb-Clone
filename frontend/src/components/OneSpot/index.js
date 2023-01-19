@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { getOneSpotThunk } from "../../store/spots";
 import "./OneSpot.css";
+import OpenModalButton from "../OpenModalButton";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -12,6 +13,11 @@ function OneSpot() {
 
   const spotImages = spot?.SpotImages
   const spotPics = spotImages?.find(pic => pic.preview === true)
+
+  const host = useSelector((state) => state.spots.singleSpot.User?.firstName);
+
+//   const spotReviews = useSelector((state) => state.Reviews);
+//   console.log(spotReviews)
 
   useEffect(() => {
     dispatch(getOneSpotThunk(spotId)).catch(() => history.push("/"));
@@ -26,7 +32,7 @@ function OneSpot() {
       <div className="spot-header">
         <div className="rating">
             <i className="fa fa-star"/>
-            {spot.avgStarRating}
+            {spot.avgStarRating} • {spot.numReviews} reviews
         </div>
         <p className="location">{spot.city}, {spot.state}, {spot.country}</p>
       </div>
@@ -37,6 +43,21 @@ function OneSpot() {
             src={spotPics?.url}
             alt='no image found'
           />
+        </div>
+
+        <div className="bottom-left">
+            <div className="description">
+                <h2 className="title">Amazing place hosted by {host}</h2>
+                <p>Property description: {spot.description}</p>
+            </div>
+            <div className="amenities">
+            </div>
+            <div className="reviews-area">
+                <div className="reviews-area-header">
+                    <h3><i className="fa fa-star"/>
+                    {spot.avgStarRating} • {spot.numReviews} reviews </h3>
+                </div>
+            </div>
         </div>
 
     </div>
