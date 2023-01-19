@@ -51,17 +51,6 @@ function AddSpotModal() {
       );
     };
 
-    // const newAddress = (e) => setAddress(e.target.value)
-    // const newCity = (e) => setCity(e.target.value)
-    // const newState = (e) => setState(e.target.value)
-    // const newCountry = (e) => setCountry(e.target.value)
-    // const newLat = (e) => setLat(e.target.value)
-    // const newLng = (e) => setLng(e.target.value)
-    // const newName = (e) => setName(e.target.value)
-    // const newDescription = (e) => setDescription(e.target.value)
-    // const newPrice = (e) => setPrice(e.target.value)
-    // const newUrl = (e) => setUrl(e.target.value)
-
     return (
     <div className="add-spot-container">
 
