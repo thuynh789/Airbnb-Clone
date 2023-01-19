@@ -55,18 +55,19 @@ function AddSpotModal() {
     // const newCity = (e) => setCity(e.target.value)
     // const newState = (e) => setState(e.target.value)
     // const newCountry = (e) => setCountry(e.target.value)
-    const newLat = (e) => setLat(e.target.value)
-    const newLng = (e) => setLng(e.target.value)
-    const newName = (e) => setName(e.target.value)
-    const newDescription = (e) => setDescription(e.target.value)
-    const newPrice = (e) => setPrice(e.target.value)
-    const newUrl = (e) => setUrl(e.target.value)
+    // const newLat = (e) => setLat(e.target.value)
+    // const newLng = (e) => setLng(e.target.value)
+    // const newName = (e) => setName(e.target.value)
+    // const newDescription = (e) => setDescription(e.target.value)
+    // const newPrice = (e) => setPrice(e.target.value)
+    // const newUrl = (e) => setUrl(e.target.value)
 
     return (
     <div className="add-spot-container">
 
       <div className="x-button">
         <button className="exit" onClick={closeModal}>
+          x
           <i className="fa-solid fa-xmark" />
         </button>
       </div>
@@ -128,64 +129,46 @@ function AddSpotModal() {
           </label>
 
           <label>
-            ???
+            Property name
             <input
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </label>
 
           <label>
-            ???
+            Description
             <input
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
               required
             />
           </label>
 
           <label>
-            ???
+            Price per night
             <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
               required
             />
           </label>
 
           <label>
-            ???
+            Preview Image URL
             <input
               type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
               required
             />
           </label>
 
-          <label>
-            ???
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </label>
-
-          <label>
-            ???
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </label>
+            <button className='submit form' type="submit">Create new listing</button>
 
         </div>
       </form>
