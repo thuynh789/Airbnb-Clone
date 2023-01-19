@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-import { deleteSpotThunk } from "../../store/spots";
+import { editSpotThunk } from "../../store/spots";
 import "./EditSpotModal.css"
 
-const   EditSpotModal = () => {
+const EditSpotModal = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { closeModal } = useModal();
@@ -16,7 +16,7 @@ const   EditSpotModal = () => {
        e.preventDefault();
        setErrors([]);
 
-    await dispatch(deleteSpotThunk(spot.id))
+    await dispatch(editSpotThunk(spot.id))
       .then(history.push('/'))
       .then(closeModal)
       .catch(async (res) => {
