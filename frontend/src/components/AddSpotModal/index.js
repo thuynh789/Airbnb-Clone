@@ -155,7 +155,7 @@ function AddSpotModal() {
             />
           </label>
 
-            <button className='submit form' type="submit">Create new listing</button>
+            <button className='submit-form' type="submit">Create new listing</button>
 
         </div>
       </form>

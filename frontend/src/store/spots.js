@@ -88,19 +88,21 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
     }
 }
 
-export const editSpotThunk = (spotEdits, spotInfo) => async (dispatch) => {
-    const res = await csrfFetch(`/api/spots/${spotInfo.id}`, {
+export const editSpotThunk = (spot, spotExtras) => async (dispatch) => {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(spotEdits)
+        body: JSON.stringify(spot)
     })
     if (res.ok) {
-        const spot = await res.json()
-        const updatedSpot = { ...spot, ...spotInfo }
+        const editedSpot = await res.json()
+        const updatedSpot = { ...editedSpot, ...spotExtras }
+
+        // console.log('THIS IS UPDATED SPOT', updatedSpot)
         dispatch(editSpotAC(updatedSpot))
-        // console.log(updatedSpot)
         return updatedSpot
     }
+    return res
 }
 
 //REDUCERS

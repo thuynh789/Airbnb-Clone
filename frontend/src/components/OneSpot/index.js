@@ -5,6 +5,7 @@ import { getOneSpotThunk } from "../../store/spots";
 import "./OneSpot.css";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSpotModal from "../DeleteSpotModal";
+import EditSpotModal from "../EditSpotModal";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -65,12 +66,21 @@ function OneSpot() {
 
         <div className="user-specific-buttons">
         {spot.ownerId === user?.id && (
-
+          <div className="buttons">
+            
           <div className="delete-button">
             <OpenModalButton
               buttonText="Delete Listing"
               modalComponent={<DeleteSpotModal />}
             />
+          </div>
+
+          <div className="edit-button">
+            <OpenModalButton
+              buttonText="Edit Listing"
+              modalComponent={<EditSpotModal/>}
+            />
+          </div>
           </div>
         )}
         </div>
