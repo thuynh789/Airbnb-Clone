@@ -5,6 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import AllSpots from "./components/AllSpots";
 import OneSpot from "./components/OneSpot";
+import AddSpotModal from "./components/AddSpotModal";
 
 function App() {
   const dispatch = useDispatch();
