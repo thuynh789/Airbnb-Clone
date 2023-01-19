@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { getOneSpotThunk } from "../../store/spots";
 import "./OneSpot.css";
 import OpenModalButton from "../OpenModalButton";
+import DeleteSpotModal from "../DeleteSpotModal";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -14,7 +15,8 @@ function OneSpot() {
   const spotImages = spot?.SpotImages
   const spotPics = spotImages?.find(pic => pic.preview === true)
 
-  const host = useSelector((state) => state.spots.singleSpot.User?.firstName);
+  const host = useSelector((state) => state.spots.singleSpot.User?.firstName)
+  const user = useSelector((state) => state.session.user)
 
 //   const spotReviews = useSelector((state) => state.Reviews);
 //   console.log(spotReviews)
@@ -58,6 +60,18 @@ function OneSpot() {
                     {spot.avgStarRating} • {spot.numReviews} reviews </h3>
                 </div>
             </div>
+        </div>
+
+        <div className="user-specific-buttons">
+        {spot.ownerId === user?.id && (
+
+          <div className="delete-button">
+            <OpenModalButton
+              buttonText="Delete Listing"
+              modalComponent={<DeleteSpotModal />}
+            />
+          </div>
+        )}
         </div>
 
     </div>
