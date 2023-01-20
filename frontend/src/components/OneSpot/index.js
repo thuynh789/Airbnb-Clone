@@ -76,13 +76,11 @@ function OneSpot() {
         <div className="not-user-specific-buttons">
           {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
         {spot.ownerId !== user?.id && (
-          <div className="buttons">
           <div className="create-review-button">
             <OpenModalButton
               buttonText="Create a Review"
               modalComponent={<CreateReview/>}
             />
-          </div>
           </div>
         )}
         </div>

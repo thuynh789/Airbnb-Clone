@@ -2,12 +2,14 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { getSpotReviewsThunk } from "../../store/reviews";
+import DeleteReview from "../DeleteReview";
 import "./SpotReviews.css"
 
 function SpotReviews() {
   const dispatch = useDispatch()
   const { closeModal } = useModal();
   const spot = useSelector((state) => state.spots.singleSpot);
+  const user = useSelector((state) => state.session.user);
 
   useEffect(() => {
       dispatch(getSpotReviewsThunk(spot.id))
@@ -42,9 +44,20 @@ function SpotReviews() {
                     <p>{review.stars} stars</p>
                     <p>{review.review}</p>
                 </div>
+
+                <div className="delete-review-wrapper">
+                {/* OWNER OF REVIEW */}
+                  {user.id === review?.userId && (
+                  <div className="delete-review">
+                    <DeleteReview myReew = {review} />
+                  </div>
+                  )}
+                </div>
+
                 </div>
             ))}
         </div>
+
     </div>
   )
 }
