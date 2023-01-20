@@ -30,12 +30,21 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="form-wrapper">
+      <div className="x-button">
+        <button className="exit" onClick={closeModal}>
+          x
+          <i className="fa-solid fa-xmark" />
+        </button>
+      </div>
+
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
+
+        <div className="form-parts">
         <label>
           Email
           <input
@@ -91,8 +100,9 @@ function SignupFormModal() {
           />
         </label>
         <button type="submit">Sign Up</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 

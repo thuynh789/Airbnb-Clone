@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createReviewThunk } from "../../store/reviews";
 import { getOneSpotThunk } from "../../store/spots";
-
+import "./CreateReview.css";
 
 function CreateReview() {
   const dispatch = useDispatch();
