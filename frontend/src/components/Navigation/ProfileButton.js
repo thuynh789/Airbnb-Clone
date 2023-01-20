@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import DemoUser from "../DemoUser";
 import AddSpotModal from "../AddSpotModal";
+import "./Navigation.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -44,10 +45,14 @@ function ProfileButton({ user }) {
   return (
     <>
       <div>
+
       <button className='profile-button' onClick={openMenu}>
-        <i className="fa-bars"></i>
-        <i className="fa fa-user-circle" />
+        <div className="icons">
+        <i className="fas fa-bars"/>
+        <i className="fas fa-user-circle"/>
+        </div>
       </button>
+      
       </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (

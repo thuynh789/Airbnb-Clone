@@ -176,8 +176,8 @@ router.get("/", validateParameters, async (req, res, next) => {
         total += review.stars
         count++
     })
-    spot.avgRating = total/count
-    if (!spot.avgRating) {
+    spot.avgRating = (total/count).toFixed(2)
+    if (!spot.avgRating || spot.avgRating === 'NaN') {
         spot.avgRating = "No ratings";
       }
 
@@ -345,10 +345,10 @@ router.get("/:spotId", async (req, res, next) => {
 
     info.numReviews = numReviews
     if (!info.numReviews) {
-        info.numReviews = 'No reviews'
+        info.numReviews = 'No'
     }
-    info.avgStarRating = total/numReviews
-    if (!info.avgStarRating) {
+    info.avgStarRating = (total/numReviews).toFixed(2)
+    if (!info.avgStarRating || info.avgStarRating === 'NaN') {
         info.avgStarRating = 'No ratings'
       }
 

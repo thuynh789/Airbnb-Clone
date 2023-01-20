@@ -9,24 +9,15 @@ const DeleteReview = ({ myReview }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
   const { closeModal } = useModal();
-	const [errors, setErrors] = useState([]);
 	const spot = useSelector((state) => state.spots.singleSpot);
 
 	const handleSubmit = async (e) => {
        e.preventDefault();
-       setErrors([]);
-
-
 
     dispatch(deleteReviewThunk(myReview.id))
       .then(() => dispatch(getOneSpotThunk(spot.id)))
       .then(() => history.push(`/spots/${spot.id}`))
       .then(closeModal)
-      .catch(async (res) => {
-        console.log(res)
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
   };
 
 return (

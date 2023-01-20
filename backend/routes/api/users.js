@@ -9,24 +9,24 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateSignup = [
-  check('email', 'email: Invalid email')
+  check('email', 'Invalid email')
     .notEmpty()
     .bail()
     .isEmail(),
-  check('username','username: Please provide a username with at least 4 characters.')
+  check('username','Please provide a username with at least 4 characters.')
     .notEmpty()
     .bail()
     .isLength({ min: 4 }),
-  check('username','username: Username cannot be an email.')
+  check('username','Username cannot be an email.')
     .not()
     .isEmail(),
-  check('password', 'password: Password must be 6 characters or more.')
+  check('password', 'Password must be 6 characters or more.')
     .notEmpty()
     .bail()
     .isLength({ min: 6 }),
-  check('firstName', 'firstName: First Name is required.')
+  check('firstName', 'First Name is required.')
     .notEmpty(),
-  check('lastName', 'lastName: Last Name is required.')
+  check('lastName', 'Last Name is required.')
     .notEmpty(),
   handleValidationErrors
 ];
