@@ -30,7 +30,8 @@ function CreateReview() {
 
     const reviewExtras = {
         User,
-        ReviewImages: []
+        ReviewImages: [],
+        
     }
 
     dispatch(createReviewThunk(spot.id, newReview, reviewExtras ))

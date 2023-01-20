@@ -49,7 +49,7 @@ function SpotReviews() {
                 {/* OWNER OF REVIEW */}
                   {user.id === review?.userId && (
                   <div className="delete-review">
-                    <DeleteReview myReew = {review} />
+                    <DeleteReview myReview = {review} />
                   </div>
                   )}
                 </div>
