@@ -1,12 +1,18 @@
 .errors{
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex; */
+    /* flex-wrap: wrap; */
 }
 .add-spot-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 
+}
+.x-button{
+    /* display: flex;
+    align-items: flex-start; */
+    width: 100%;
+    
 }
 #modal-content{
     max-width: 50%
