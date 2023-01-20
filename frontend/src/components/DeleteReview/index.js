@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
+import { getOneSpotThunk } from "../../store/spots";
 
 const DeleteReview = ({ myReview }) => {
 	const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const DeleteReview = ({ myReview }) => {
 
 
     dispatch(deleteReviewThunk(myReview.id))
+      .then(() => dispatch(getOneSpotThunk(spot.id)))
       .then(() => history.push(`/spots/${spot.id}`))
       .then(closeModal)
       .catch(async (res) => {
