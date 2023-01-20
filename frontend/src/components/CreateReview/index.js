@@ -40,7 +40,7 @@ function CreateReview() {
       async (res) => {
         const data = await res.json();
         if (data && data.message) setErrors([data.message])
-        // console.log(errors)
+        // console.log(data)
       })
     }
 
