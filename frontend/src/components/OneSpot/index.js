@@ -6,6 +6,8 @@ import "./OneSpot.css";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSpotModal from "../DeleteSpotModal";
 import EditSpotModal from "../EditSpotModal";
+import SpotReviews from "../SpotReviews";
+import CreateReview from "../CreateReview";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -64,10 +66,30 @@ function OneSpot() {
             </div>
         </div>
 
+        <div className="Reviews">
+            <OpenModalButton
+              buttonText="See Reviews"
+              modalComponent={<SpotReviews/>}
+            />
+        </div>
+
+        <div className="not-user-specific-buttons">
+          {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
+        {spot.ownerId !== user?.id && (
+          <div className="create-review-button">
+            <OpenModalButton
+              buttonText="Create a Review"
+              modalComponent={<CreateReview/>}
+            />
+          </div>
+        )}
+        </div>
+
         <div className="user-specific-buttons">
+          {/* OWNER OF SPOT SPECIFIC THINGS*/}
         {spot.ownerId === user?.id && (
           <div className="buttons">
-            
+
           <div className="delete-button">
             <OpenModalButton
               buttonText="Delete Listing"

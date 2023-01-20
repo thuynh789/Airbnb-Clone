@@ -42,6 +42,7 @@ export const getAllSpotsThunk = () => async (dispatch) => {
         dispatch(getAllSpotsAC(spots))
         return spots
     }
+    return res
 }
 
 export const getOneSpotThunk = (spotId) => async (dispatch) => {
@@ -51,6 +52,7 @@ export const getOneSpotThunk = (spotId) => async (dispatch) => {
         dispatch(getSpotAC(spot))
         return spot
     }
+    return res
 }
 
 export const addSpotThunk = (newSpot, url) => async (dispatch) => {
@@ -86,6 +88,7 @@ export const deleteSpotThunk = (spotId) => async (dispatch) => {
         dispatch(deleteSpotAC(spotId))
         return deletedSpot
     }
+    return res
 }
 
 export const editSpotThunk = (spot, spotExtras) => async (dispatch) => {
