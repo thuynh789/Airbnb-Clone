@@ -25,7 +25,15 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="form-wrapper">
+
+      <div className="x-button">
+        <button className="exit" onClick={closeModal}>
+          x
+          <i className="fa-solid fa-xmark" />
+        </button>
+      </div>
+
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -33,6 +41,8 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
+
+        <div className="form-parts">
         <label>
           Username or Email
           <input
@@ -52,8 +62,10 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+
+        </div>
       </form>
-    </>
+    </div>
   );
 }
 
