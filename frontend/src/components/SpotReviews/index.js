@@ -7,11 +7,11 @@ import "./SpotReviews.css"
 function SpotReviews() {
   const dispatch = useDispatch()
   const { closeModal } = useModal();
-  const spotId = useSelector((state) => state.spots.singleSpot.id);
+  const spot = useSelector((state) => state.spots.singleSpot);
 
   useEffect(() => {
-      dispatch(getSpotReviewsThunk(spotId))
-    }, [dispatch, spotId])
+      dispatch(getSpotReviewsThunk(spot.id))
+    }, [dispatch, spot.id])
 
   const spotReviews = useSelector(state => state.reviews.spot)
   const spotReviewArr = Object.values(spotReviews)
@@ -28,7 +28,11 @@ function SpotReviews() {
             </button>
         </div>
 
-        <h2 className="review-header"> Reviews </h2>
+        <div className="rating">
+            <i className="fa fa-star"/>
+            {spot.avgStarRating} • {spot.numReviews} reviews
+        </div>
+
         <div className="all-reviews">
             {spotReviewArr.map(review => (
                 <div key={review.id} className="review">
