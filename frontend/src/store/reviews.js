@@ -2,7 +2,6 @@ import { csrfFetch } from "./csrf";
 
 // constant action types
 const GET_SPOT_REVIEWS = "spots/GET_SPOT_REVIEWS"
-const GET_USER_REVIEWS = "spots/GET_USER_REVIEWS"
 const ADD_REVIEW = "spots/ADD_REVIEW"
 const DELETE_REVIEW = "spots/DELETE_REVIEW"
 
