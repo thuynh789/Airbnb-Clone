@@ -8,6 +8,14 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   return (
+    <div className='nav-wrapper'>
+      <div className='nav-comps'>
+        <div className='top-left'>
+          <NavLink exact to="/">
+            {/* <img className="logo" src={logo} /> */}
+          </NavLink>
+        </div>
+
     <ul>
       <li>
         <NavLink exact to="/">Home</NavLink>
@@ -18,7 +26,12 @@ function Navigation({ isLoaded }){
         </li>
       )}
     </ul>
+
+
+      </div>
+    </div>
   );
+
 }
 
 export default Navigation;

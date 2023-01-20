@@ -1,0 +1,7 @@
+.spot-first-image{
+    display: flex;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 350px;
+    border-radius: 15px
+}
