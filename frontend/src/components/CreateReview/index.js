@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { createReviewThunk } from "../../store/reviews";
+import { getOneSpotThunk } from "../../store/spots";
 
 
 function CreateReview() {
@@ -16,9 +17,6 @@ function CreateReview() {
   const [review, setReview] = useState('');
   const [stars, setStars] = useState('');
 
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -31,10 +29,11 @@ function CreateReview() {
     const reviewExtras = {
         User,
         ReviewImages: [],
-        
+
     }
 
     dispatch(createReviewThunk(spot.id, newReview, reviewExtras ))
+    .then(() => dispatch(getOneSpotThunk(spot.id)))
     .then(() => history.push(`/spots/${spot.id}`))
     .then(closeModal)
     .catch(
@@ -42,7 +41,14 @@ function CreateReview() {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors)
       })
+
+    // dispatch(getOneSpotThunk(spot.id))
+    //   .then(() => history.push(`/spots/${spot.id}`))
+    //   .then(closeModal)
+
+
     }
+
 
     return (
     <div className="add-review-container">
