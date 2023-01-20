@@ -148,7 +148,7 @@ function AddSpotModal() {
           <label>
             Preview Image URL
             <input
-              type="text"
+              type="url"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               required

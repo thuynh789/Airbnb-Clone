@@ -6,6 +6,7 @@ import "./OneSpot.css";
 import OpenModalButton from "../OpenModalButton";
 import DeleteSpotModal from "../DeleteSpotModal";
 import EditSpotModal from "../EditSpotModal";
+import SpotReviews from "../SpotReviews";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -64,10 +65,15 @@ function OneSpot() {
             </div>
         </div>
 
+        <div className="Reviews">
+          Reviews
+          <SpotReviews/>
+        </div>
+
         <div className="user-specific-buttons">
         {spot.ownerId === user?.id && (
           <div className="buttons">
-            
+
           <div className="delete-button">
             <OpenModalButton
               buttonText="Delete Listing"
