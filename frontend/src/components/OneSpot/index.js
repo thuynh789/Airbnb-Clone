@@ -66,8 +66,10 @@ function OneSpot() {
         </div>
 
         <div className="Reviews">
-          Reviews
-          <SpotReviews/>
+            <OpenModalButton
+              buttonText="See Reviews"
+              modalComponent={<SpotReviews/>}
+            />
         </div>
 
         <div className="user-specific-buttons">
