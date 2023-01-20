@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
 
-const DeleteReview = ({myReview}) => {
+const DeleteReview = ({ myReview }) => {
 	const dispatch = useDispatch();
 	const history = useHistory();
-    const { closeModal } = useModal();
+  const { closeModal } = useModal();
 	const [errors, setErrors] = useState([]);
 	const spot = useSelector((state) => state.spots.singleSpot);
 
@@ -15,7 +15,9 @@ const DeleteReview = ({myReview}) => {
        e.preventDefault();
        setErrors([]);
 
-     dispatch(deleteReviewThunk(myReview.id))
+
+
+    dispatch(deleteReviewThunk(myReview.id))
       .then(() => history.push(`/spots/${spot.id}`))
       .then(closeModal)
       .catch(async (res) => {
