@@ -48,6 +48,18 @@ export const createReviewThunk = (spotId, newReview, reviewExtras) => async (dis
     return res
 }
 
+export const deleteReviewThunk = (reviewId) => async (dispatch) => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        const deletedReview = await res.json()
+        dispatch(deleteReviewAC(reviewId))
+        return deletedReview
+    }
+    return res
+}
+
 //REDUCERS
 
 const initialState = {
@@ -73,6 +85,11 @@ export default function reviewReducer(state = initialState, action){
             return newState
         }
 
+        case DELETE_REVIEW: {
+            const newState = { spot:{...state.spot}, user: {} };
+            delete newState.spot[action.reviewId];
+            return newState;
+        }
 
         default:
             return state
