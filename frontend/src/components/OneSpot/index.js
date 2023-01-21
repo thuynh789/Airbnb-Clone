@@ -38,8 +38,12 @@ function OneSpot() {
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-header">
         <div className="rating">
-            <i className="fa fa-star"/>
-            {spot.avgStarRating} · {spot.numReviews} reviews · Superhost · {spot.city}, {spot.state}, {spot.country}
+            <i className="fa fa-star"/>{' '}
+             {spot.avgStarRating} · {spot.numReviews} reviews &nbsp;
+             · &nbsp;&nbsp;
+             <i className="fa fa-medal"/> Superhost &nbsp;
+             · &nbsp;&nbsp;
+             {spot.city}, {spot.state}, {spot.country}
         </div>
         {/* <p className="location">{spot.city}, {spot.state}, {spot.country}</p> */}
       </div>
@@ -58,6 +62,7 @@ function OneSpot() {
                 <p>Property description: {spot.description}</p>
             </div>
             <div className="amenities">
+            3 guests · 1 bedroom · 2 beds · 1.5 baths
             </div>
             <div className="reviews-area">
                 <div className="reviews-area-header">
