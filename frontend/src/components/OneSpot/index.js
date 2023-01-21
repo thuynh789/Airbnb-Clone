@@ -8,6 +8,7 @@ import DeleteSpotModal from "../DeleteSpotModal";
 import EditSpotModal from "../EditSpotModal";
 import SpotReviews from "../SpotReviews";
 import CreateReview from "../CreateReview";
+import ReviewsForPage from "../SpotReviews/reviewsforpage";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -38,9 +39,9 @@ function OneSpot() {
       <div className="spot-header">
         <div className="rating">
             <i className="fa fa-star"/>
-            {spot.avgStarRating} • {spot.numReviews} reviews
+            {spot.avgStarRating} · {spot.numReviews} reviews · Superhost · {spot.city}, {spot.state}, {spot.country}
         </div>
-        <p className="location">{spot.city}, {spot.state}, {spot.country}</p>
+        {/* <p className="location">{spot.city}, {spot.state}, {spot.country}</p> */}
       </div>
 
         <div className="spot-image">
@@ -53,7 +54,7 @@ function OneSpot() {
 
         <div className="bottom-left">
             <div className="description">
-                <h2 className="title">Amazing place hosted by {host}</h2>
+                <h2 className="title">Rent-a-place hosted by {host}</h2>
                 <p>Property description: {spot.description}</p>
             </div>
             <div className="amenities">
@@ -61,17 +62,17 @@ function OneSpot() {
             <div className="reviews-area">
                 <div className="reviews-area-header">
                     <h3><i className="fa fa-star"/>
-                    {spot.avgStarRating} • {spot.numReviews} reviews </h3>
+                    {spot.avgStarRating} • {spot.numReviews} reviews  </h3>
                 </div>
             </div>
         </div>
 
-        <div className="Reviews">
+        {/* <div className="Reviews-modal">
             <OpenModalButton
               buttonText="See Reviews"
               modalComponent={<SpotReviews/>}
             />
-        </div>
+        </div> */}
 
         <div className="not-user-specific-buttons">
           {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
@@ -105,6 +106,10 @@ function OneSpot() {
           </div>
           </div>
         )}
+        </div>
+
+        <div className="reviews">
+          <ReviewsForPage/>
         </div>
 
     </div>
