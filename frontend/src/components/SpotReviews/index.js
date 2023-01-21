@@ -10,6 +10,9 @@ function SpotReviews() {
   const { closeModal } = useModal();
   const spot = useSelector((state) => state.spots.singleSpot);
   const user = useSelector((state) => state.session.user);
+  const test = useSelector((state) => state.session)
+
+  console.log(user)
 
   useEffect(() => {
       dispatch(getSpotReviewsThunk(spot.id))
@@ -47,7 +50,7 @@ function SpotReviews() {
 
                 <div className="delete-review-wrapper">
                 {/* OWNER OF REVIEW */}
-                  {user.id === review?.userId && (
+                  {user && user.id === review?.userId && (
                   <div className="delete-review">
                     <DeleteReview myReview = {review} />
                   </div>
