@@ -8,6 +8,7 @@ import DeleteSpotModal from "../DeleteSpotModal";
 import EditSpotModal from "../EditSpotModal";
 import SpotReviews from "../SpotReviews";
 import CreateReview from "../CreateReview";
+import ReviewsForPage from "../SpotReviews/reviewsforpage";
 
 function OneSpot() {
   const { spotId } = useParams();
@@ -37,10 +38,14 @@ function OneSpot() {
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-header">
         <div className="rating">
-            <i className="fa fa-star"/>
-            {spot.avgStarRating} • {spot.numReviews} reviews
+            <i className="fa fa-star"/>{' '}
+             {spot.avgStarRating} · {spot.numReviews} reviews &nbsp;
+             · &nbsp;&nbsp;
+             <i className="fa fa-medal"/> Superhost &nbsp;
+             · &nbsp;&nbsp;
+             {spot.city}, {spot.state}, {spot.country}
         </div>
-        <p className="location">{spot.city}, {spot.state}, {spot.country}</p>
+        {/* <p className="location">{spot.city}, {spot.state}, {spot.country}</p> */}
       </div>
 
         <div className="spot-image">
@@ -53,25 +58,40 @@ function OneSpot() {
 
         <div className="bottom-left">
             <div className="description">
-                <h2 className="title">Amazing place hosted by {host}</h2>
-                <p>Property description: {spot.description}</p>
+                <h2 className="title">Rent-a-place hosted by {host}</h2>
+                {/* <h3 className="amenities"> 3 guests · 1 bedroom · 2 beds · 1.5 baths </h3> */}
             </div>
             <div className="amenities">
+            3 guests · 1 bedroom · 2 beds · 1.5 baths
             </div>
+
+            <hr className="line-one"></hr>
+
+            <div className="description">
+              <p>{spot.description}{' '}
+              {/* This place is stunning, please rent it. We are not responsible for any
+              mishaps with rentals as this is a fake AirBnB clone made during a
+              where a user can rent out ANY place regardless of if it belongs to them or not.
+              You have been warned. */}
+              </p>
+            </div>
+
+            <hr className="line-one"></hr>
+
             <div className="reviews-area">
                 <div className="reviews-area-header">
                     <h3><i className="fa fa-star"/>
-                    {spot.avgStarRating} • {spot.numReviews} reviews </h3>
+                    {spot.avgStarRating} · {spot.numReviews} reviews  </h3>
                 </div>
             </div>
         </div>
 
-        <div className="Reviews">
+        {/* <div className="Reviews-modal">
             <OpenModalButton
               buttonText="See Reviews"
               modalComponent={<SpotReviews/>}
             />
-        </div>
+        </div> */}
 
         <div className="not-user-specific-buttons">
           {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
@@ -105,6 +125,10 @@ function OneSpot() {
           </div>
           </div>
         )}
+        </div>
+
+        <div className="reviews">
+          <ReviewsForPage/>
         </div>
 
     </div>
