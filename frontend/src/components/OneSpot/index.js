@@ -59,15 +59,29 @@ function OneSpot() {
         <div className="bottom-left">
             <div className="description">
                 <h2 className="title">Rent-a-place hosted by {host}</h2>
-                <p>Property description: {spot.description}</p>
+                {/* <h3 className="amenities"> 3 guests · 1 bedroom · 2 beds · 1.5 baths </h3> */}
             </div>
             <div className="amenities">
             3 guests · 1 bedroom · 2 beds · 1.5 baths
             </div>
+
+            <hr className="line-one"></hr>
+
+            <div className="description">
+              <p>{spot.description}{' '}
+              {/* This place is stunning, please rent it. We are not responsible for any
+              mishaps with rentals as this is a fake AirBnB clone made during a
+              where a user can rent out ANY place regardless of if it belongs to them or not.
+              You have been warned. */}
+              </p>
+            </div>
+
+            <hr className="line-one"></hr>
+
             <div className="reviews-area">
                 <div className="reviews-area-header">
                     <h3><i className="fa fa-star"/>
-                    {spot.avgStarRating} • {spot.numReviews} reviews  </h3>
+                    {spot.avgStarRating} · {spot.numReviews} reviews  </h3>
                 </div>
             </div>
         </div>

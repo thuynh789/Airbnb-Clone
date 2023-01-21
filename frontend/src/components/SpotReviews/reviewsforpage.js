@@ -41,8 +41,8 @@ function ReviewsForPage() {
                 <div key={review.id} className="review">
 
                 <div className="review-stuff">
-                  <i className="fas fa-user-circle"/>
-                    <h4>{review.User.firstName}</h4>
+                  <i className="fas fa-user-circle"/> &nbsp;&nbsp;
+                    {review.User.firstName}
                     <p>{review.stars} stars</p>
                     <p>{review.review}</p>
                 </div>
