@@ -12,7 +12,7 @@ function Navigation({ isLoaded }){
       <div className='nav-comps'>
         <div className='top-left'>
           <NavLink exact to="/">
-            {/* <img className="logo" src={logo} /> */}
+            <img className="logo" src='' />
           </NavLink>
         </div>
 

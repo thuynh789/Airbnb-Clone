@@ -58,7 +58,7 @@ function OneSpot() {
 
         <div className="bottom-left">
             <div className="description">
-                <h2 className="title">Rent-a-place hosted by {host}</h2>
+                <h2 className="title">Rent-a-Place hosted by {host}</h2>
                 {/* <h3 className="amenities"> 3 guests · 1 bedroom · 2 beds · 1.5 baths </h3> */}
             </div>
             <div className="amenities">
