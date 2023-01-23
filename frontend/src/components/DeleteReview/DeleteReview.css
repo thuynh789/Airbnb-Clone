@@ -2,7 +2,8 @@
     color: white;
     background-color: #ff385c;
     border-color: #ff385c;
-    padding: 0.3em;
-    border-radius: 15px;
+    padding: 0.5em;
+    border-radius: 13px;
     font-weight: bolder;
+    border: 0;
 }
