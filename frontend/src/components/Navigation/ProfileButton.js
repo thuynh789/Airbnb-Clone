@@ -60,17 +60,17 @@ function ProfileButton({ user }) {
 <ul className={ulClassName} ref={ulRef}>
 {user ? (
   <div className="dropdown-items">
-    <li>{user.username}</li>
-    <li>{user.firstName} {user.lastName}</li>
-    <li>{user.email}</li>
+    <div className="user-info">
+      <li>{user.username}</li>
+      <li>{user.firstName} {user.lastName}</li>
+      <li>{user.email}</li>
+    </div>
     <div className="create-spot-form">
-      <button>
         <OpenModalMenuItem
-          itemText="Create a new listing"
+          itemText="Create new listing"
           onItemClick={closeMenu}
           modalComponent={<AddSpotModal />}
       />
-      </button>
     </div>
     <div className="logout" onClick={logout}>
       Log Out

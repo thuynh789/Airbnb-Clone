@@ -28,15 +28,17 @@ function LoginFormModal() {
     <div className="form-wrapper">
 
       <div className="x-button">
-        <button className="exit" onClick={closeModal}>
+        <div className="exit" onClick={closeModal}>
           x
           <i className="fa-solid fa-xmark" />
-        </button>
+        </div>
       </div>
 
-      <h1>Log In</h1>
+      <div className="login">Log In</div>
+
+
       <form onSubmit={handleSubmit}>
-        <ul>
+        <ul className="errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
@@ -44,8 +46,9 @@ function LoginFormModal() {
 
         <div className="form-parts">
         <label>
-          Username or Email
           <input
+            className="input-login"
+            placeholder="Username or Email"
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
@@ -53,15 +56,16 @@ function LoginFormModal() {
           />
         </label>
         <label>
-          Password
           <input
+            className="input-login"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             // required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className="login-button" type="submit">Log In</button>
 
         </div>
       </form>

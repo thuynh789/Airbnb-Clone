@@ -79,3 +79,20 @@ ul {
   width: 200px;
   margin-top: 10px;
 }
+
+.dropdown-items li, .more-dropdown li, .logout, .demo-user{
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.user-info li{
+  display: flex;
+  flex-direction: column;
+  font-style: italic;
+  padding: 10px 10px 10px 10px;
+  color:black;
+  font-weight: bolder;
+}
+.user-info:hover, .more-dropdown li:hover, .logout:hover, .create-spot-form:hover, .demo-user:hover{
+  background-color: #DCE0E0;
+}

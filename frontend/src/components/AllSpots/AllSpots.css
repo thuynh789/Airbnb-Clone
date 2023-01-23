@@ -1,5 +1,5 @@
 .spots-wrapper {
-    margin-top: 130px;
+    margin-top: 1px;
     margin-right: 50px;
     margin-left: 50px;
     width: auto;
@@ -11,7 +11,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    /* gap: 1em 14px; */
+    gap: 10px;
 }
 
 .spots-card {
