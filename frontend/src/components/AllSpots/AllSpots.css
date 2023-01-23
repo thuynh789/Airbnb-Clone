@@ -1,5 +1,7 @@
 .spots-wrapper {
-    margin: 30px;
+    margin-top: 130px;
+    margin-right: 50px;
+    margin-left: 50px;
     width: auto;
 }
 
@@ -9,19 +11,17 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    margin: 0px;
     /* gap: 1em 14px; */
 }
 
 .spots-card {
-    margin: 20px;
-    gap: 1em 25px;
+    margin: 2px;
+    margin-bottom: 40px;
 }
 
 .spots-card-wrapper {
     width: 250px;
     height: 250px;
-    margin: 0px;
 }
 
 .spots-image {
@@ -47,7 +47,7 @@
 }
 
 .rating{
-    display:flex;
+    display: flex;
     align-items: center;
 }
 
