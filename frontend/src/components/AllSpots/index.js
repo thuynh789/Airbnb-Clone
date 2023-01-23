@@ -34,7 +34,7 @@ function AllSpots() {
                             <p className="location">{spot.city}, {spot.state}</p>
                             <div className="rating">
                                 <i className="fa fa-star"/>
-                                {spot.avgRating}
+                                 &nbsp; {spot.avgRating}
                             </div>
                         </div>
                     </div>

@@ -56,7 +56,7 @@
 
 .location{
     display: flex;
-    flex: 2;
+    flex: 6;
 }
 
 .location, .price{
