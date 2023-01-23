@@ -37,7 +37,7 @@ function OneSpot() {
 
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-header">
-        
+
         <div className="rating">
             <i className="fa fa-star"/>{' '}
              {spot.avgStarRating} · {spot.numReviews} reviews &nbsp;
@@ -109,9 +109,22 @@ function OneSpot() {
             <div className="reviews-area">
                 <div className="reviews-area-header">
                     <h3><i className="fa fa-star"/>
-                    {spot.avgStarRating} · {spot.numReviews} reviews  </h3>
+                    {spot.avgStarRating} · {spot.numReviews} reviews  · &nbsp; </h3>
                 </div>
+
+                   {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
+                  {spot.ownerId !== user?.id && (
+                    <div className="create-review-button">
+                    <OpenModalButton
+                    buttonText="Create a Review"
+                    modalComponent={<CreateReview/>}
+                    />
+                    </div>
+                    )}
+
             </div>
+
+
         </div>
 
         {/* <div className="Reviews-modal">
@@ -121,17 +134,6 @@ function OneSpot() {
             />
         </div> */}
 
-        <div className="not-user-specific-buttons">
-          {/* NOT OWNER OF SPOT SPECIFIC THINGS */}
-        {spot.ownerId !== user?.id && (
-          <div className="create-review-button">
-            <OpenModalButton
-              buttonText="Create a Review"
-              modalComponent={<CreateReview/>}
-            />
-          </div>
-        )}
-        </div>
 
 
         <div className="reviews">
