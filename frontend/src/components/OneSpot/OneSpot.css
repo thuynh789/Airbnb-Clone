@@ -23,6 +23,8 @@
 
 .rating{
     width: 100%;
+    justify-content: flex-start;
+    flex: 2;
 }
 
 .buttons{
@@ -36,6 +38,7 @@
     width: 50%;
     justify-content: flex-end;
     margin-left: 3em;
+    flex: 1;
 }
 
 .spot-first-image{
