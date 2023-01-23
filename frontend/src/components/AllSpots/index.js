@@ -31,17 +31,11 @@ function AllSpots() {
                     </div>
                     <div className="spots-details-wrapper">
                         <div className="spots-details">
-
-                            <div className="location">{spot.city}, {spot.state}
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <i className="fa fa-star"/>
-                                {spot.avgRating}</div>
-
-                            {/* <div className="rating">
+                            <p className="location">{spot.city}, {spot.state}</p>
+                            <div className="rating">
                                 <i className="fa fa-star"/>
                                 {spot.avgRating}
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                             <div className= 'spot-price'>
