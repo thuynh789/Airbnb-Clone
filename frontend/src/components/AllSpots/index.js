@@ -36,9 +36,12 @@ function AllSpots() {
                                 <i className="fa fa-star"/>
                                 {spot.avgRating}
                             </div>
-                            <p className="price">${spot.price} night</p>
                         </div>
                     </div>
+                            <div className= 'spot-price'>
+                                <span className="price">${spot.price}&nbsp;</span>
+                                <span>night</span>
+                            </div>
                 </div>
             ))}
         </div>

@@ -52,8 +52,10 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle"/>
         </div>
       </button>
-      
+
       </div>
+
+      
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>

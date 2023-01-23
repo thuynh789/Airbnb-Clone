@@ -1,23 +1,27 @@
 .spots-wrapper {
-    margin: 80px;
-
+    margin: 30px;
+    width: auto;
 }
 
 .all-spots {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin: 0px;
+    /* gap: 1em 14px; */
 }
 
 .spots-card {
     margin: 20px;
+    gap: 1em 25px;
 }
 
 .spots-card-wrapper {
     width: 250px;
     height: 250px;
-
+    margin: 0px;
 }
 
 .spots-image {
@@ -25,6 +29,28 @@
     flex-wrap: wrap;
     width: 250px;
     height: 250px;
-    border-radius: 15px
+    border-radius: 15px;
+    margin: 0px;
+    object-fit: cover;
 
+}
+
+.spots-details-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.spots-details{
+    display: flex;
+    justify-content: space-between;
+    align-items: space-around;
+}
+
+.rating{
+    display:flex;
+    align-items: center;
+}
+
+.location, .price{
+    font-weight: bold;
 }
