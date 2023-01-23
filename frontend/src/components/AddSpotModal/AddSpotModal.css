@@ -3,6 +3,8 @@
     flex-direction: column;
     align-items: center;
     padding: 1em 1em 1em;
+    height: auto;
+    width: 12em;
 }
 
 .x-button{
