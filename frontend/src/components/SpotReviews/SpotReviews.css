@@ -1,0 +1,14 @@
+.reviews-wrapper{
+    margin-top: 1em;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review{
+    display: flex;
+    flex: 1 0 50%;
+}
+
+fas.fa-user-circle{
+    
+}
