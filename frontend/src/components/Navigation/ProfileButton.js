@@ -40,7 +40,7 @@ function ProfileButton({ user }) {
     closeMenu();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : "");
 
   return (
     <>
@@ -52,9 +52,52 @@ function ProfileButton({ user }) {
         <i className="fas fa-user-circle"/>
         </div>
       </button>
-      
+
       </div>
-      <ul className={ulClassName} ref={ulRef}>
+
+      { showMenu ?
+
+<ul className={ulClassName} ref={ulRef}>
+{user ? (
+  <div className="dropdown-items">
+    <div className="user-info">
+      <li>{user.username}</li>
+      <li>{user.firstName} {user.lastName}</li>
+      <li>{user.email}</li>
+    </div>
+    <div className="create-spot-form">
+        <OpenModalMenuItem
+          itemText="Create new listing"
+          onItemClick={closeMenu}
+          modalComponent={<AddSpotModal />}
+      />
+    </div>
+    <div className="logout" onClick={logout}>
+      Log Out
+    </div>
+  </div>
+) : (
+  <div className="more-dropdown">
+    <OpenModalMenuItem
+      itemText="Log In"
+      onItemClick={closeMenu}
+      modalComponent={<LoginFormModal />}
+    />
+    <OpenModalMenuItem
+      itemText="Sign Up"
+      onItemClick={closeMenu}
+      modalComponent={<SignupFormModal />}
+    />
+    <div className="demo-user">
+      <DemoUser/>
+    </div>
+  </div>
+)}
+</ul>
+     : null }
+
+
+      {/* <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
@@ -91,7 +134,9 @@ function ProfileButton({ user }) {
 
           </>
         )}
-      </ul>
+      </ul> */}
+
+
     </>
   );
 }
