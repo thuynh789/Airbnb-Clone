@@ -48,7 +48,7 @@ return (
             </ul>
         </div>
 
-        <form className="submit-form" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
                 <button className="confirm-delete-btn" type="submit">Confirm Delete</button>
         </form>
 

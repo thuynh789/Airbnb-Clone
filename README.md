@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/thuynh789/Rent-A-Place">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="./images/logo.png" alt="Logo" width="340" height="80">
   </a>
 
 <h3 align="center">Rent-a-Place</h3>
@@ -13,7 +13,7 @@
     <br />
     <br />
     <br />
-    <a href="https://airbnb-clone-ekf5.onrender.com">Site Link</a>
+    <a href="https://airbnb-clone-ekf5.onrender.com">Site Link: Rent-a-Place</a>
   </p>
 </div>
 
