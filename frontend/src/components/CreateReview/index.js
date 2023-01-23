@@ -49,14 +49,14 @@ function CreateReview() {
     <div className="add-review-container">
 
       <div className="x-button">
-        <button className="exit" onClick={closeModal}>
+        <div className="exit" onClick={closeModal}>
           x
           <i className="fa-solid fa-xmark" />
-        </button>
+        </div>
       </div>
 
       <div className="header">
-        <h2>Create Review</h2>
+        Write A New Review
       </div>
 
       <div>
@@ -72,8 +72,9 @@ function CreateReview() {
         <div className="form-parts">
 
           <label>
-            Review
             <input
+            className="form-part"
+            placeholder="Review"
               type="text"
               value={review}
               onChange={(e) => setReview(e.target.value)}
@@ -82,8 +83,9 @@ function CreateReview() {
           </label>
 
           <label>
-            Star Rating (1-5)
             <input
+            className="form-part"
+            placeholder="Star Rating (1-5)"
               type="number"
               value={stars}
               onChange={(e) => setStars(e.target.value)}

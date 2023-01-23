@@ -29,10 +29,10 @@ return (
     <div className="delete-wrapper">
 
         <div className="x-button">
-            <button className="exit" onClick={closeModal}>
+            <div className="exit" onClick={closeModal}>
                 x
                 <i className="fa-solid fa-xmark" />
-            </button>
+            </div>
         </div>
 
         <div className="header">
@@ -48,7 +48,7 @@ return (
             </ul>
         </div>
 
-        <form className="delete-spot-form" onSubmit={handleSubmit}>
+        <form className="submit-form" onSubmit={handleSubmit}>
                 <button className="confirm-delete-btn" type="submit">Confirm Delete</button>
         </form>
 

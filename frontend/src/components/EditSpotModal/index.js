@@ -58,15 +58,13 @@ return (
     <div className="edit-wrapper">
 
         <div className="x-button">
-            <button className="exit" onClick={closeModal}>
+            <div className="exit" onClick={closeModal}>
                 x
                 <i className="fa-solid fa-xmark" />
-            </button>
+            </div>
         </div>
 
-        <div className="header">
-            <h2>Edit listing</h2>
-        </div>
+        <div className="header">Edit listing</div>
 
         <div>
             <ul className="errors">
@@ -77,11 +75,12 @@ return (
         </div>
 
         <form className="edit-spot-form" onSubmit={handleSubmit}>
-            <div className="form-wrapper">
+            <div className="form-parts">
 
             <label>
-            Street Address
             <input
+            className="form-part"
+            placeholder="Street Address"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
@@ -90,8 +89,9 @@ return (
           </label>
 
           <label>
-            City
             <input
+            className="form-part"
+            placeholder="City"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
@@ -100,8 +100,9 @@ return (
           </label>
 
           <label>
-            State
             <input
+            className="form-part"
+            placeholder="State"
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
@@ -110,8 +111,9 @@ return (
           </label>
 
           <label>
-            Country/Region
             <input
+            className="form-part"
+            placeholder="Country/Region"
               type="text"
               value={country}
               onChange={(e) => setCountry(e.target.value)}
@@ -120,8 +122,9 @@ return (
           </label>
 
           <label>
-            Property name
             <input
+            className="form-part"
+            placeholder="Property name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -130,8 +133,9 @@ return (
           </label>
 
           <label>
-            Description
             <input
+            className="form-part"
+            placeholder="Description"
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
@@ -140,15 +144,15 @@ return (
           </label>
 
           <label>
-            Price per night
             <input
+            className="form-part"
+            placeholder="Price per night"
               type="number"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               // required
             />
           </label>
-
                 <button className="confirm-edit-btn" type="submit">Confirm edits</button>
             </div>
         </form>

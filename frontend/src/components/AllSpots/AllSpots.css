@@ -49,6 +49,14 @@
 .rating{
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    flex:1;
+}
+
+
+.location{
+    display: flex;
+    flex: 2;
 }
 
 .location, .price{

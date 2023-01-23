@@ -23,6 +23,8 @@
 
 .rating{
     width: 100%;
+    justify-content: flex-start;
+    flex: 2;
 }
 
 .buttons{
@@ -36,6 +38,7 @@
     width: 50%;
     justify-content: flex-end;
     margin-left: 3em;
+    flex: 1;
 }
 
 .spot-first-image{
@@ -85,11 +88,20 @@
     font-weight: bolder; */
 }
 
-.delete-button button, .edit-button button{
+.delete-button button, .edit-button button, .create-review-button button{
     color: white;
     background-color: #ff385c;
     border-color: #ff385c;
-    padding: 1em;
+    padding: 0.3em;
     border-radius: 15px;
     font-weight: bolder;
+}
+
+.reviews-area{
+    display: flex;
+    align-items: center;
+}
+
+.reviews-area-header, .create-review-button{
+    display: flex;
 }

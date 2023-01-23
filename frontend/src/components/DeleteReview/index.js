@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { deleteReviewThunk } from "../../store/reviews";
 import { getOneSpotThunk } from "../../store/spots";
+import "./DeleteReview.css"
 
 const DeleteReview = ({ myReview }) => {
 	const dispatch = useDispatch();
@@ -22,11 +23,9 @@ const DeleteReview = ({ myReview }) => {
 
 return (
     <div className="delete-button-wrapper">
-        <button className="delete-review" onClick={handleSubmit}>Delete Your Review</button>
+        <button className="delete-review" onClick={handleSubmit}>Delete Review</button>
     </div>
   )
 };
 
 export default DeleteReview;
-
-
