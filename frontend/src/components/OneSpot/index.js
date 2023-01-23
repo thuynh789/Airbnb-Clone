@@ -37,6 +37,7 @@ function OneSpot() {
 
       <h1 className="spot-name">{spot.name}</h1>
       <div className="spot-header">
+        
         <div className="rating">
             <i className="fa fa-star"/>{' '}
              {spot.avgStarRating} · {spot.numReviews} reviews &nbsp;
@@ -45,6 +46,31 @@ function OneSpot() {
              · &nbsp;&nbsp;
              {spot.city}, {spot.state}, {spot.country}
         </div>
+
+        <div className="user-specific-buttons">
+          {/* OWNER OF SPOT SPECIFIC THINGS*/}
+        {spot.ownerId === user?.id && (
+          <div className="buttons">
+
+          <div className="delete-button">
+            <OpenModalButton
+              className = 'button-in'
+              buttonText="Delete Listing"
+              modalComponent={<DeleteSpotModal />}
+            />
+          </div>
+
+          <div className="edit-button">
+            <OpenModalButton
+              className = 'button-in'
+              buttonText="Edit Listing"
+              modalComponent={<EditSpotModal/>}
+            />
+          </div>
+          </div>
+        )}
+        </div>
+
         {/* <p className="location">{spot.city}, {spot.state}, {spot.country}</p> */}
       </div>
 
@@ -64,6 +90,8 @@ function OneSpot() {
             <div className="amenities">
             3 guests · 1 bedroom · 2 beds · 1.5 baths
             </div>
+
+
 
             <hr className="line-one"></hr>
 
@@ -105,27 +133,6 @@ function OneSpot() {
         )}
         </div>
 
-        <div className="user-specific-buttons">
-          {/* OWNER OF SPOT SPECIFIC THINGS*/}
-        {spot.ownerId === user?.id && (
-          <div className="buttons">
-
-          <div className="delete-button">
-            <OpenModalButton
-              buttonText="Delete Listing"
-              modalComponent={<DeleteSpotModal />}
-            />
-          </div>
-
-          <div className="edit-button">
-            <OpenModalButton
-              buttonText="Edit Listing"
-              modalComponent={<EditSpotModal/>}
-            />
-          </div>
-          </div>
-        )}
-        </div>
 
         <div className="reviews">
           <ReviewsForPage/>

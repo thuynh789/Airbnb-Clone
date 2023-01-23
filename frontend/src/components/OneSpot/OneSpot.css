@@ -1,9 +1,11 @@
 .spot-wrapper-page {
     display: flex;
+    justify-content: space-between;
     flex-direction: column;
     padding-top: 40px;
     width: 80vw;
     margin: auto;
+    padding-top: 130px;
 }
 
 .spot-name {
@@ -17,6 +19,23 @@
     font-size: 14px;
     padding-bottom: 25px;
     font-weight: lighter;
+}
+
+.rating{
+    width: 100%;
+}
+
+.buttons{
+    /* margin-top: 1.5em; */
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 3em;
+}
+
+.user-specific-buttons{
+    width: 50%;
+    justify-content: flex-end;
+    margin-left: 3em;
 }
 
 .spot-first-image{
@@ -53,5 +72,24 @@
     margin-bottom: 25px;
 }
 
-.reviews-area-header{
+
+.delete-button, .edit-button{
+    flex-shrink: 0;
+    width: auto;
+    margin-right: 1em;
+    /* color: white;
+    background-color: #ff385c;
+    border-color: #ff385c;
+    padding: 1em;
+    border-radius: 15px;
+    font-weight: bolder; */
+}
+
+.delete-button button, .edit-button button{
+    color: white;
+    background-color: #ff385c;
+    border-color: #ff385c;
+    padding: 1em;
+    border-radius: 15px;
+    font-weight: bolder;
 }
