@@ -13,7 +13,7 @@
     <br />
     <br />
     <br />
-    <a href="https://airbnb-clone-ekf5.onrender.com">Site Link: Rent-a-Place</a>
+    <a href="https://rent-a-place.onrender.com">Site Link: Rent-a-Place</a>
   </p>
 </div>
 
